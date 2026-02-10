@@ -1,0 +1,2 @@
+mkdir -p /work/dataset/slides/ccrcc/<SLIDE_ID>
+cp /work/tmp_slide/<SLIDE_ID>_tissue_only/*.png /work/dataset/slides/ccrcc/<SLIDE_ID>/
