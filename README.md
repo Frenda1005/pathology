@@ -31,7 +31,47 @@ Install:
 ```bash
 pip install -r requirements.txt
 
+
+Step-by-step
+0) Dump macro (if you don't already have a macro jpg/png)
+bash scripts/00_dump_macro.sh /work/tmp_slide/<SLIDE_ID>.isyntax /work/tmp_slide/<SLIDE_ID>_MACROIMAGE.jpg
+1) Detect ROI box on macro -> LEVEL0 bbox (with margin)
 python3 scripts/01_detect_roi_bbox.py \
   --macro /work/tmp_slide/<SLIDE_ID>_MACROIMAGE.jpg \
   --w0 153606 --h0 91142 \
   --out_overlay /work/tmp_slide/<SLIDE_ID>_macro_detected_roi.png
+This prints:
+MACRO roi bbox (mx0,my0,mx1,my1)
+LEVEL0 bbox (X0,Y0,X1,Y1)
+2) Extract tiles inside ROI
+Edit the bbox numbers into the command (or use env vars):
+bash scripts/02_patch_extract_roi.sh \
+  /work/tmp_slide/<SLIDE_ID>.isyntax \
+  28424 0 109898 83220 \
+  2 1024
+level 2
+tileW=tileH=1024 in level0 units (==256×256 at level2)
+3) QC grid image
+python3 scripts/03_make_patch_grid.py \
+  --tile_dir /work/<SLIDE_ID>_<RUNID> \
+  --out /work/tmp_slide/<SLIDE_ID>_grid.png
+4) Filter tissue tiles
+python3 scripts/04_filter_tissue_tiles.py \
+  --tile_dir /work/<SLIDE_ID>_<RUNID> \
+  --out_dir /work/tmp_slide/<SLIDE_ID>_tissue_only
+5) Put tiles into dataset folders
+Example:
+mkdir -p /work/dataset/slides/ccrcc/<SLIDE_ID>
+cp /work/tmp_slide/<SLIDE_ID>_tissue_only/*.png /work/dataset/slides/ccrcc/<SLIDE_ID>/
+6) Extract features for all slides
+python3 scripts/06_extract_features_resnet50.py \
+  --root /work/dataset/slides \
+  --out_csv /work/dataset/features/features_resnet50.csv \
+  --out_dir /work/dataset/features
+7) Train slide-level classifier (LOO CV)
+python3 scripts/07_train_slide_loo.py \
+  --csv /work/dataset/features/features_resnet50.csv \
+  --pos_label ccrcc
+Outputs:
+AUC, accuracy
+/work/dataset/features/slide_predictions_loo.csv
