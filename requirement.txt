@@ -1,0 +1,5 @@
+/work/dataset/slides/
+  ccrcc/
+    <slide_id>/*.png
+  chromophobe/
+    <slide_id>/*.png
