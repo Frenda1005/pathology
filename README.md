@@ -27,12 +27,6 @@ Python packages for ML steps:
 - pandas, numpy, pillow, tqdm
 - scikit-learn
 
-Install:
-```bash
-pip install -r requirements.txt
-```
-
-
 
 # 🚀 Whole-Slide Patch Classification Pipeline
 
