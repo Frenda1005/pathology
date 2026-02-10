@@ -100,3 +100,5 @@ AUC
 Accuracy
 Predictions
 /work/dataset/features/slide_predictions_loo.csv
+⭐ My honest recommendation (important)
+
