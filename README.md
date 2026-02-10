@@ -42,7 +42,7 @@ This pipeline processes **Philips iSyntax whole-slide images** and trains a slid
 
 ```bash
 pip install -r requirements.txt
-```
+
 
 ---
 
