@@ -30,6 +30,8 @@ Python packages for ML steps:
 Install:
 ```bash
 pip install -r requirements.txt
+```
+
 
 
 # 🚀 Whole-Slide Patch Classification Pipeline
