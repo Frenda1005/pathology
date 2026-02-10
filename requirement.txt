@@ -1,5 +1,7 @@
-/work/dataset/slides/
-  ccrcc/
-    <slide_id>/*.png
-  chromophobe/
-    <slide_id>/*.png
+numpy
+pandas
+pillow
+tqdm
+scikit-learn
+torch
+torchvision
