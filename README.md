@@ -30,3 +30,8 @@ Python packages for ML steps:
 Install:
 ```bash
 pip install -r requirements.txt
+
+python3 scripts/01_detect_roi_bbox.py \
+  --macro /work/tmp_slide/<SLIDE_ID>_MACROIMAGE.jpg \
+  --w0 153606 --h0 91142 \
+  --out_overlay /work/tmp_slide/<SLIDE_ID>_macro_detected_roi.png
