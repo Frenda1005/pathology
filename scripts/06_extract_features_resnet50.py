@@ -28,7 +28,7 @@ def main():
     ])
 
     rows = []
-    classes = [("ccrcc","ccrcc"), ("chromophobe","chromophobe")]
+    classes = [("ccrcc","ccrcc"), ("chromo","chromo")]
 
     with torch.no_grad():
         for class_dir, label in classes:
