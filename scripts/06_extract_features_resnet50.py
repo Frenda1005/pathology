@@ -7,7 +7,7 @@ from torchvision import models, transforms
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--root", required=True, help="root containing ccrcc/ and chromophobe/")
+    ap.add_argument("--root", required=True, help="root containing ccrcc/ and chromo/")
     ap.add_argument("--out_csv", required=True)
     ap.add_argument("--out_dir", required=True)
     args = ap.parse_args()
